@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>個人網站｜One‑Page GitHub Pages</title>
-    <meta name="description" content="一頁式個人網站：About Me、Education、Project、Publication、Contact" />
+    <title>Po-Han Huang | One‑Page GitHub Pages</title>
+    <meta name="description" content="One-page personal site: About Me, Education, Project, Publication, Contact" />
     <style>
         :root {
             --primary: #4f46e5;
-            /* 主色：修改這個即可換主題色 */
+            /* Primary theme color */
             --text: #1f2937;
             --muted: #6b7280;
             --bg: #ffffff;
@@ -17,7 +17,7 @@
             --card: #ffffff;
             --border: #e5e7eb;
             --nav-h: 64px;
-            /* 固定導覽列高度 */
+            /* Fixed navbar height */
         }
 
         @media (prefers-color-scheme: dark) {
@@ -173,6 +173,34 @@
             color: var(--muted)
         }
 
+        /* ---------- Section header w/ Resume button ---------- */
+        .sec-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resume-btn:hover {
+            border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
+            color: var(--primary);
+        }
+
         /* ---------- Cards / Project ---------- */
         .card-link {
             display: block;
@@ -282,10 +310,26 @@
 
         /* ---------- Hero ---------- */
         .hero {
+            position: relative;
+            overflow: hidden;
             padding-top: calc(var(--nav-h) + 36px);
             padding-bottom: 36px;
             text-align: center;
             background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 7%, transparent) 0%, transparent 100%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('imgs/background.jpg') center/cover no-repeat;
+            opacity: .7;
+            z-index: 0;
+        }
+
+        .hero>.container {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -308,7 +352,7 @@
     <!-- ===== Fixed Navigation ===== -->
     <nav class="navbar" aria-label="Primary">
         <div class="nav-wrap">
-            <div class="brand"><a href="#home" aria-label="Go to top">YourName</a></div>
+            <div class="brand"><a href="#home" aria-label="Go to top">Po-Han Huang</a></div>
             <button class="menu-btn" aria-label="Toggle menu" id="menuBtn">☰</button>
             <div class="nav" id="navLinks" role="navigation">
                 <a href="#home" class="nav-link">Home</a>
@@ -324,7 +368,7 @@
     <!-- ===== Hero / Top ===== -->
     <header id="home" class="hero">
         <div class="container">
-            <h1>Hi, I'm Your Name</h1>
+            <h1>Hi, I'm Po-Han Huang</h1>
             <p>Researcher • Engineer • Creator</p>
             <div style="margin-top:12px"><span class="chip">One‑Page • GitHub Pages Ready</span></div>
         </div>
@@ -333,11 +377,13 @@
     <!-- ===== About Me ===== -->
     <section id="aboutme" class="section" aria-label="About me">
         <div class="container">
-            <h2>About Me</h2>
+            <div class="sec-header">
+                <h2>About Me</h2>
+                <a class="resume-btn" href="assets/Po-Han_Huang_CV.pdf" download>Resume / CV</a>
+            </div>
             <p>
-                我是一名專注於 <strong>Computer Vision / Deep Learning</strong> 的工程師，熱衷將研究成果落地為產品，亦關注工程穩定性與可維護性。
-                想更了解我？歡迎下載我的履歷：
-                <a href="assets/Your_Name_CV.pdf" download>Resume / CV (PDF)</a>
+                I am an engineer focusing on <strong>Computer Vision</strong> and <strong>Deep Learning</strong>. I
+                enjoy turning research into real-world products and care deeply about reliability and maintainability.
             </p>
         </div>
     </section>
@@ -361,14 +407,14 @@
     <section id="project" class="section" aria-label="Projects">
         <div class="container">
             <h2>Project</h2>
-            <!-- 單欄置中卡片／若需多個專案，複製這個 <a> 區塊 -->
+            <!-- Single centered card. Duplicate <a> for more projects. -->
             <a class="card-link" href="https://example.com/project-demo" target="_blank" rel="noopener"
                 aria-label="Open project in new tab">
-                <img class="card-img" src="https://via.placeholder.com/1280x720.png?text=Project+Thumbnail"
-                    alt="Project thumbnail" />
+                <img class="card-img" src="imgs/project.jpg" alt="Project thumbnail" />
                 <div class="card-body">
                     <p class="card-title">Anomaly Detection Pipeline</p>
-                    <p class="card-desc">端到端工業電腦視覺流程：資料清理、特徵萃取、定位與評估儀表板。</p>
+                    <p class="card-desc">End-to-end industrial CV pipeline: data curation, feature extraction,
+                        localization, and evaluation dashboard.</p>
                 </div>
             </a>
         </div>
@@ -383,14 +429,14 @@
                     <a href="https://arxiv.org/abs/0000.00000" target="_blank" rel="noopener">Title of the Paper — A
                         Unified Framework for Industrial AD</a>
                 </div>
-                <div class="authors">Your Name*, Teammate A, Teammate B (*corresponding)</div>
+                <div class="authors">Po-Han Huang*, Teammate A, Teammate B (*corresponding)</div>
             </div>
             <div class="pub">
                 <div class="pub-title">
                     <a href="https://doi.org/xx.xxxx/xxxx" target="_blank" rel="noopener">Another Paper Title —
                         Efficient Token Mixing for Vision</a>
                 </div>
-                <div class="authors">Your Name, Advisor C</div>
+                <div class="authors">Po-Han Huang, Advisor C</div>
             </div>
         </div>
     </section>
@@ -399,16 +445,17 @@
     <section id="contact" class="section" aria-label="Contact">
         <div class="container">
             <h2>Contact Me</h2>
-            <p class="muted" style="margin-bottom:10px">留言將透過您本機的 Email 用戶端寄送</p>
+            <p class="muted" style="margin-bottom:10px">Your message will open the default email client on your device.
+            </p>
             <div class="contact-box">
-                <textarea id="msg" placeholder="想傳達的內容…"></textarea>
+                <textarea id="msg" placeholder="Your message…"></textarea>
                 <button class="btn" id="sendBtn">Send</button>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">© <span id="year"></span> Your Name • One‑Page Template</div>
+        <div class="container">© <span id="year"></span> Po-Han Huang • One‑Page Template</div>
     </footer>
 
     <script>
@@ -417,7 +464,7 @@
         const navLinks = document.getElementById('navLinks');
         menuBtn?.addEventListener('click', () => navLinks.classList.toggle('show'));
 
-        // ===== Scrollspy: 高亮目前區塊 =====
+        // ===== Scrollspy: highlight current section =====
         const links = [...document.querySelectorAll('.nav a')];
         const targets = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
         const io = new IntersectionObserver((entries) => {
@@ -430,8 +477,8 @@
         }, { rootMargin: `-40% 0px -55% 0px`, threshold: [0, 1] });
         targets.forEach(t => io.observe(t));
 
-        // ===== Contact: 以 mailto 開啟本機郵件軟體 =====
-        const CONTACT_EMAIL = 'you@example.com'; // ← 改成你的收件地址
+        // ===== Contact: use mailto to open local email client =====
+        const CONTACT_EMAIL = 'alan880603@gmail.com';
         document.getElementById('sendBtn')?.addEventListener('click', () => {
             const msg = document.getElementById('msg').value.trim();
             const subject = 'Website Contact';
