@@ -4,20 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Po-Han Huang | AI Research Engineer</title>
+  <title>Po-Han Huang | Research</title>
   <meta name="description"
-    content="Po-Han Huang — AI Research Engineer. Computer Vision, Deep Learning, Generative AI. Industrial defect inspection, medical segmentation, deepfake detection." />
+    content="Po-Han Huang — AI Research Engineer. Research in Computer Vision, Industrial Anomaly Detection, Segmentation, and Robust Deepfake Detection." />
 
   <style>
     :root {
       --primary: #4f46e5;
-      --text: #1f2937;
+      --text: #111827;
       --muted: #6b7280;
       --bg: #ffffff;
       --bg-soft: #f8fafc;
       --card: #ffffff;
       --border: #e5e7eb;
       --nav-h: 64px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .06);
+      --radius: 18px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -28,12 +30,12 @@
         --bg-soft: #0f172a;
         --card: #0b1329;
         --border: #1f2a44;
+        --shadow: 0 12px 36px rgba(0, 0, 0, .25);
       }
     }
 
     * { box-sizing: border-box }
     html { scroll-behavior: smooth }
-
     body {
       margin: 0;
       font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -60,17 +62,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
 
-    .brand { font-weight: 800; letter-spacing: .3px; }
+    .brand { font-weight: 850; letter-spacing: .2px; }
     .brand a { color: var(--text); text-decoration: none }
 
-    .nav { display: flex; gap: 18px; align-items: center; }
+    .nav { display: flex; gap: 14px; align-items: center; }
     .nav a {
       color: var(--muted);
       text-decoration: none;
       padding: 8px 10px;
       border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
     }
     .nav a:hover { color: var(--text); }
     .nav a.active { color: #fff; background: var(--primary); }
@@ -82,22 +87,23 @@
       padding: 8px 10px;
       background: transparent;
       color: var(--text);
+      font-weight: 700;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 820px) {
       .nav {
         display: none;
         position: absolute;
         top: var(--nav-h);
-        right: 4%;
-        left: 4%;
+        right: 0;
+        left: 0;
         flex-direction: column;
         gap: 8px;
         background: var(--card);
         border: 1px solid var(--border);
         padding: 10px;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, .08)
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
       }
       .nav.show { display: flex }
       .menu-btn { display: inline-flex }
@@ -108,32 +114,24 @@
       padding: calc(var(--nav-h) + 36px) 0 72px;
       scroll-margin-top: calc(var(--nav-h) + 12px);
     }
+    .container { width: min(980px, 92%); margin-inline: auto; }
 
-    .container { width: min(900px, 92%); margin-inline: auto; }
-
-    h1, h2, h3 { line-height: 1.2; margin: 0 0 14px }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 12px }
     h2 { font-size: clamp(22px, 3vw, 28px) }
     p { margin: 0 0 10px }
-
     .muted { color: var(--muted) }
+
     .chip {
       display: inline-block;
       padding: 6px 10px;
       border: 1px solid var(--border);
       border-radius: 999px;
       font-size: 12px;
-      color: var(--muted)
+      color: var(--muted);
+      background: color-mix(in oklab, var(--bg) 78%, transparent);
     }
 
-    .sec-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .resume-btn {
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -144,25 +142,110 @@
       background: var(--card);
       color: var(--text);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+      gap: 8px;
+      white-space: nowrap;
     }
-    .resume-btn:hover {
-      border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
-      color: var(--primary);
-    }
+    .btn:hover { border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); color: var(--primary); }
 
-    /* ---------- Cards / Projects ---------- */
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+    }
+    .btn.primary:hover { filter: brightness(0.97); color: #fff; }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
     }
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
     .col-6 { grid-column: span 6; }
     .col-12 { grid-column: span 12; }
-    @media (max-width: 760px) {
-      .col-6 { grid-column: span 12; }
+    @media (max-width: 900px) {
+      .col-7, .col-5, .col-6 { grid-column: span 12; }
     }
 
+    /* ---------- Hero (research style) ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding-top: calc(var(--nav-h) + 44px);
+      padding-bottom: 44px;
+      background:
+        radial-gradient(1200px 300px at 50% 0%, color-mix(in oklab, var(--primary) 12%, transparent), transparent),
+        linear-gradient(180deg, color-mix(in oklab, var(--bg-soft) 85%, transparent), transparent);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('imgs/background.jpg') center/cover no-repeat;
+      opacity: .22;
+      z-index: 0;
+    }
+    .hero > .container { position: relative; z-index: 1; }
+
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); }
+    .hero .subtitle { font-weight: 700; color: var(--muted); }
+    .hero .links { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero .meta { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .card h3 { margin-bottom: 8px; }
+
+    /* ---------- Timeline (Experience) ---------- */
+    .timeline { position: relative; padding-left: 18px; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: color-mix(in oklab, var(--border) 70%, transparent);
+    }
+    .t-item { position: relative; padding: 10px 0 10px 10px; }
+    .t-item::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 16px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+    .t-title { font-weight: 850; }
+    .t-sub { color: var(--muted); font-size: 14px; margin-top: 2px; }
+
+    /* ---------- Publications (simple two-line style) ---------- */
+    .pub {
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--border)
+    }
+    .pub:last-child { border-bottom: none }
+    .pub-title a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      font-weight: 700;
+    }
+    .pub-title a:hover {
+      border-color: var(--primary);
+      color: var(--primary)
+    }
+    .authors { color: var(--muted) }
+
+    /* ---------- Project Card (original style) ---------- */
     .card-link {
       display: block;
       border: 1px solid var(--border);
@@ -171,38 +254,22 @@
       overflow: hidden;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .05);
+      box-shadow: var(--shadow);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      height: 100%;
     }
-
     .card-link:hover {
       transform: translateY(-2px);
       box-shadow: 0 16px 36px rgba(0, 0, 0, .08);
       border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
     }
-
     .card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block }
     .card-body { padding: 14px 16px 16px; }
     .card-title { font-weight: 700; margin: 0 0 6px }
     .card-desc { color: var(--muted); margin: 0 }
-    .tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
 
     /* ---------- Lists ---------- */
     .list { padding-left: 18px; }
     .list li { margin: 6px 0 }
-
-    /* ---------- Publication ---------- */
-    .pub { padding: 14px 0; border-bottom: 1px dashed var(--border) }
-    .pub:last-child { border-bottom: none }
-    .pub-title a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      font-weight: 650;
-    }
-    .pub-title a:hover { border-color: var(--primary); color: var(--primary) }
-    .authors { color: var(--muted) }
 
     /* ---------- Contact ---------- */
     .contact-box { display: flex; gap: 10px; }
@@ -216,8 +283,7 @@
       border-radius: 16px;
       resize: vertical
     }
-
-    .btn {
+    .send {
       appearance: none;
       border: none;
       background: var(--primary);
@@ -225,49 +291,61 @@
       border-radius: 14px;
       padding: 10px 14px;
       cursor: pointer;
-      font-weight: 600
+      font-weight: 850;
+      height: 44px;
+      align-self: flex-start;
     }
-    .btn:disabled { opacity: .6; cursor: not-allowed }
+    .send:disabled { opacity: .6; cursor: not-allowed }
 
-    /* ---------- Hero ---------- */
-    .hero {
-      position: relative;
+    footer { padding: 30px 0 60px; text-align: center; color: var(--muted) }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; }
+
+    /* ---------- Paper figure cards (Artifacts) ---------- */
+    .figure-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: var(--shadow);
       overflow: hidden;
-      padding-top: calc(var(--nav-h) + 44px);
-      padding-bottom: 44px;
-      text-align: center;
-      background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 8%, transparent) 0%, transparent 100%);
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('imgs/background.jpg') center/cover no-repeat;
-      opacity: .55;
-      z-index: 0;
+    .figure-card img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      background: color-mix(in oklab, var(--bg-soft) 70%, transparent);
     }
-
-    .hero>.container { position: relative; z-index: 1; }
-    .hero h1 { font-size: clamp(28px, 4vw, 40px); }
-    .hero p { color: var(--muted) }
-    .hero-links { margin-top: 14px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .link-pill {
+    .figure-card .body { padding: 14px 16px 16px; }
+    .figure-card .kicker {
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .figure-card .title { font-weight: 800; margin: 6px 0 6px; }
+    .figure-card .desc { color: var(--muted); margin: 0; }
+    .figure-card .actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .mini {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 38px;
-      padding: 0 14px;
+      height: 30px;
+      padding: 0 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: color-mix(in oklab, var(--bg) 72%, transparent);
+      background: var(--card);
       color: var(--text);
       text-decoration: none;
-      font-weight: 650;
+      font-weight: 800;
+      font-size: 12px;
+      white-space: nowrap;
     }
-    .link-pill:hover { border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); color: var(--primary); }
-
-    footer { padding: 30px 0 60px; text-align: center; color: var(--muted) }
+    .mini:hover { border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); color: var(--primary); }
   </style>
 </head>
 
@@ -279,221 +357,308 @@
       <button class="menu-btn" aria-label="Toggle menu" id="menuBtn">☰</button>
       <div class="nav" id="navLinks" role="navigation">
         <a href="#home" class="nav-link">Home</a>
-        <a href="#aboutme" class="nav-link">About</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#project" class="nav-link">Projects</a>
-        <a href="#publication" class="nav-link">Publications</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#publication" class="nav-link">Publication</a>
+        <a href="#project" class="nav-link">Project</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- ===== Hero / Top ===== -->
+  <!-- ===== Hero ===== -->
   <header id="home" class="hero">
     <div class="container">
-      <h1>Hi, I'm Po-Han Huang</h1>
-      <p>AI Research Engineer • Computer Vision • Deep Learning • Generative AI</p>
-      <div style="margin-top:12px">
-        <span class="chip">Industrial Defect Inspection</span>
-        <span class="chip">Few-shot / Training-free AD</span>
-        <span class="chip">Medical Segmentation</span>
-        <span class="chip">Deepfake Detection</span>
-      </div>
+      <div class="grid">
+        <div class="col-7">
+          <h1>Po-Han Huang</h1>
+          <div class="subtitle">AI Research Engineer • Computer Vision • Deep Learning</div>
+          <p style="margin-top:12px">
+            I build practical vision systems and study data-efficient learning for real-world inspection.
+            Current interests include <strong>training-free / few-shot anomaly detection</strong>,
+            <strong>segmentation</strong>, and <strong>robust deepfake detection</strong>.
+          </p>
 
-      <div class="hero-links">
-        <a class="link-pill" href="https://github.com/Mouthhan" target="_blank" rel="noopener">GitHub</a>
-        <!-- TODO: replace with your real LinkedIn -->
-        <a class="link-pill" href="https://www.linkedin.com/in/Po-Han-Huang" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="link-pill" href="#publication">Papers</a>
+          <div class="links">
+            <a class="btn primary" href="assets/Po-Han_Huang_CV.pdf" download>Download CV</a>
+            <a class="btn" href="https://github.com/Mouthhan" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://scholar.google.com/citations?hl=zh-TW&user=igI019oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="btn" href="https://www.linkedin.com/in/%E6%9F%8F%E7%BF%B0-%E9%BB%83-984958233/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+
+          <div class="meta">
+            <span class="chip">Industrial Anomaly Detection</span>
+            <span class="chip">Foundation Models</span>
+            <span class="chip">Segmentation</span>
+            <span class="chip">Robustness</span>
+          </div>
+
+          <p class="muted" style="margin-top:10px">
+            Email: <strong>alan880603@gmail.com</strong>
+          </p>
+        </div>
+
+        <div class="col-5">
+          <div class="card">
+            <h3>Quick Summary</h3>
+            <ul style="margin: 8px 0 0; padding-left: 18px;">
+              <li>AI Research Engineer @ Inventec</li>
+              <li>WACV 2026: PatchEAD (industrial anomaly detection)</li>
+              <li>ICASSP 2024: limited supervised foot ulcer segmentation</li>
+              <li>MM Asia 2023 / Neural Networks 2023: deepfake & anti-spoofing</li>
+            </ul>
+            <p class="muted" style="margin-top:10px">
+              Tech: Python, C/C++, Docker, FastAPI, ONNX/TensorRT, Triton, Gradio
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ===== About Me ===== -->
-  <section id="aboutme" class="section" aria-label="About me">
+  <!-- ===== Research ===== -->
+  <section id="research" class="section" aria-label="Research">
     <div class="container">
-      <div class="sec-header">
-        <h2>About Me</h2>
-        <a class="resume-btn" href="assets/Po-Han_Huang_CV.pdf" download>Resume / CV</a>
-      </div>
-
-      <p>
-        I’m an AI Research Engineer at Inventec, focusing on building reliable Computer Vision systems that can be
-        deployed in the real world.
-        My recent work includes an <strong>explainable defect inspection pipeline</strong> (detection → anomaly heatmaps
-        → classification) for manufacturing, validated with cross-generation robustness (<strong>&lt;1% FN</strong>,
-        <strong>&lt;20% FP</strong>), and a <strong>diffusion-based defect synthesis</strong> strategy that reduces real
-        defect data needs by ~60%.
-      </p>
-
-      <p class="muted" style="margin-top:10px">
-        Interests: industrial anomaly detection, foundation models for vision, data-efficient learning,
-        segmentation, and practical evaluation/verification workflows.
-      </p>
-
-      <div class="tags">
-        <span class="chip">Python</span>
-        <span class="chip">C/C++</span>
-        <span class="chip">FastAPI</span>
-        <span class="chip">Docker</span>
-        <span class="chip">ONNX/TensorRT</span>
-        <span class="chip">Triton</span>
-        <span class="chip">Gradio</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Education ===== -->
-  <section id="education" class="section" aria-label="Education">
-    <div class="container">
-      <h2>Education</h2>
-
-      <h3>National Taiwan University of Science and Technology (NTUST)</h3>
-      <ul class="list">
-        <li><strong>M.S.</strong> in Computer Science and Information Engineering (Sep. 2021 – Jul. 2023)</li>
-        <li class="muted">Thesis: “Multi-Task Self-Blended Images for Face Forgery Detection”</li>
-        <li class="muted">Advisor: Prof. Kai-Lung Hua (Multimedia and Visual Computing Lab)</li>
-      </ul>
-
-      <h3>National Taiwan University of Science and Technology (NTUST)</h3>
-      <ul class="list">
-        <li><strong>B.S.</strong> in Computer Science and Information Engineering (Sep. 2017 – Jun. 2021)</li>
-        <li class="muted">Advisor: Prof. Kuan-Yu (Menphis) Chen (NLP Lab)</li>
-        <li class="muted">Undergraduate project: News classification & recommendation system</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===== Projects ===== -->
-  <section id="project" class="section" aria-label="Projects">
-    <div class="container">
-      <h2>Projects</h2>
+      <h2>Research</h2>
 
       <div class="grid">
-        <!-- Project 1 -->
-        <div class="col-6">
-          <a class="card-link" href="https://arxiv.org/abs/2509.25856" target="_blank" rel="noopener"
-            aria-label="Open PatchEAD paper in new tab">
-            <img class="card-img" src="imgs/project_ad.jpg" alt="Industrial anomaly detection thumbnail" />
-            <div class="card-body">
-              <p class="card-title">PatchEAD / Industrial Defect Inspection</p>
-              <p class="card-desc">
-                Explainable inspection pipeline for manufacturing:
-                detection → anomaly heatmaps → classification, designed for reliable human verification.
-                Training-free / few-shot anomaly detection accepted at WACV 2026.
-              </p>
-              <div class="tags">
-                <span class="chip">Anomaly Detection</span>
-                <span class="chip">Explainability</span>
-                <span class="chip">Few-shot</span>
-              </div>
-            </div>
-          </a>
+        <div class="col-7">
+          <div class="card">
+            <h3>Research Interests</h3>
+            <p>
+              My research focuses on bridging strong foundation models with reliable real-world deployment.
+              I’m particularly interested in:
+            </p>
+            <ul style="margin: 10px 0 0; padding-left: 18px;">
+              <li><strong>Industrial anomaly detection</strong>: training-free / few-shot, patch-level explainability, robust evaluation.</li>
+              <li><strong>Segmentation under limited supervision</strong>: cross-domain augmentation, ensembling, practical pipelines.</li>
+              <li><strong>Robust deepfake detection</strong>: cross-dataset generalization and difficulty-aware learning.</li>
+              <li><strong>Data synthesis</strong>: diffusion-based defect synthesis & augmentation to reduce collection cost.</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="col-6">
-          <a class="card-link" href="https://arxiv.org/abs/2401.08422" target="_blank" rel="noopener"
-            aria-label="Open ICASSP foot ulcer segmentation paper in new tab">
-            <img class="card-img" src="imgs/project_wound.jpg" alt="Medical segmentation thumbnail" />
-            <div class="card-body">
-              <p class="card-title">Wound Size Measurement & Segmentation</p>
-              <p class="card-desc">
-                End-to-end pipeline (marker → scale → segmentation).
-                99.9% marker detection using synthetic generation + augmentation, and 92% mIoU via SAM-optimizer training
-                + ensemble. Published at ICASSP 2024.
-              </p>
-              <div class="tags">
-                <span class="chip">Segmentation</span>
-                <span class="chip">Synthetic Data</span>
-                <span class="chip">Medical CV</span>
-              </div>
+        <div class="col-5">
+          <div class="card">
+            <h3>Keywords</h3>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
+              <span class="chip">Anomaly Detection</span>
+              <span class="chip">Patch-level Methods</span>
+              <span class="chip">Vision Prompting</span>
+              <span class="chip">Segmentation</span>
+              <span class="chip">Synthetic Data</span>
+              <span class="chip">Generalization</span>
+              <span class="chip">Open-set</span>
+              <span class="chip">Deployment</span>
             </div>
-          </a>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="col-12">
-          <a class="card-link" href="https://www.sigmm.org/opentoc/MMAsia2023-TOC" target="_blank" rel="noopener"
-            aria-label="Open MMAsia 2023 TOC in new tab">
-            <img class="card-img" src="imgs/project_deepfake.jpg" alt="Deepfake detection thumbnail" />
-            <div class="card-body">
-              <p class="card-title">Generalized Deepfake Detection</p>
-              <p class="card-desc">
-                Research on cross-dataset robustness with difficulty-aware learning and multi-head predictions with soft
-                labels. Published at MM Asia 2023.
-              </p>
-              <div class="tags">
-                <span class="chip">Deepfake</span>
-                <span class="chip">Generalization</span>
-                <span class="chip">Robustness</span>
-              </div>
-            </div>
-          </a>
+          </div>
         </div>
       </div>
-
-      <p class="muted" style="margin-top:12px">
-        (Tip) Replace <code>imgs/project_*.jpg</code> with your own figures/screenshots to make this section pop.
-      </p>
     </div>
   </section>
 
-  <!-- ===== Publications ===== -->
+  <!-- ===== Experience ===== -->
+<section id="experience" class="section" aria-label="Experience">
+  <div class="container">
+    <h2>Experience</h2>
+
+    <div class="card">
+        <!-- Full-time -->
+        <div>
+          <div class="t-title">AI Research Engineer — Inventec Corporation</div>
+          <div class="t-sub">May. 2024 – Present • Taiwan</div>
+          <ul class="list" style="margin-top:10px;">
+            <li>Designed and deployed an explainable defect inspection pipeline for manufacturing.</li>
+            <li>Worked on robustness and verification-friendly anomaly localization for production use.</li>
+            <li>Developed diffusion-based defect synthesis to reduce data collection burden.</li>
+            <li>Published a training-free / few-shot anomaly detection paper accepted at WACV 2026.</li>
+          </ul>
+        </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        
+
+        <!-- Intern -->
+        <div>
+          <div class="t-title">AI Research Engineer Intern — Inventec Corporation</div>
+          <div class="t-sub">Apr. 2023 – Oct. 2023 • Taiwan</div>
+          <ul class="list" style="margin-top:10px;">
+            <li>Built an end-to-end wound size measurement pipeline (marker → scale → segmentation).</li>
+            <li>Improved segmentation quality through practical training/optimization and ensembling.</li>
+            <li>Published the study at ICASSP 2024.</li>
+          </ul>
+        </div>
+        <!-- Research Assistant -->
+        <div>
+          <div class="t-title">Research Assistant — Academia Sinica</div>
+          <div class="t-sub">Jan. 2022 – Aug. 2023 • Taipei, Taiwan</div>
+          <ul class="list" style="margin-top:10px;">
+            <li>Studied generalized deepfake detection for cross-dataset robustness.</li>
+            <li>Explored difficulty-aware learning and multi-head prediction with soft labels.</li>
+            <li>Published the work at MM Asia 2023.</li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== Publication (simple style) ===== -->
   <section id="publication" class="section" aria-label="Publications">
     <div class="container">
-      <h2>Publications</h2>
+      <h2>Publication</h2>
 
       <div class="pub">
         <div class="pub-title">
           <a href="https://arxiv.org/abs/2509.25856" target="_blank" rel="noopener">
-            PatchEAD: Unifying Industrial Visual Prompting Frameworks for Patch-Exclusive Anomaly Detection (WACV 2026)
+            PatchEAD: Unifying Industrial Visual Prompting Frameworks for Patch-Exclusive Anomaly Detection
           </a>
         </div>
-        <div class="authors">Po-Han Huang, Jeng-Lin Li, Po-Hsuan Huang, Ming-Ching Chang, Wei-Chao Chen</div>
+        <div class="authors">Po-Han Huang, Jeng-Lin Li, Po-Hsuan Huang, Ming-Ching Chang, Wei-Chao Chen — WACV 2026</div>
       </div>
 
       <div class="pub">
         <div class="pub-title">
           <a href="https://arxiv.org/abs/2401.08422" target="_blank" rel="noopener">
-            Improving Limited Supervised Foot Ulcer Segmentation Using Cross-Domain Augmentation (ICASSP 2024)
+            Improving Limited Supervised Foot Ulcer Segmentation Using Cross-Domain Augmentation
           </a>
         </div>
-        <div class="authors">Shang-Jui Kuo*, Po-Han Huang*, Chia-Ching Lin, Jeng-Lin Li, Ming-Ching Chang (*equal contribution)</div>
+        <div class="authors">Shang-Jui Kuo*, Po-Han Huang*, Chia-Ching Lin, Jeng-Lin Li, Ming-Ching Chang — ICASSP 2024</div>
       </div>
 
       <div class="pub">
         <div class="pub-title">
           <a href="https://www.sigmm.org/opentoc/MMAsia2023-TOC" target="_blank" rel="noopener">
-            Multi-Task Self-Blended Images for Face Forgery Detection (MM Asia 2023)
+            Multi-Task Self-Blended Images for Face Forgery Detection
           </a>
         </div>
-        <div class="authors">Po-Han Huang*, Yue-Hua Han*, Ernie Chu, Jun-Cheng Chen, Kai-Lung Hua (*equal contribution)</div>
+        <div class="authors">Po-Han Huang*, Yue-Hua Han*, Ernie Chu, Jun-Cheng Chen, Kai-Lung Hua — MM Asia 2023</div>
       </div>
 
       <div class="pub">
         <div class="pub-title">
           <a href="https://doi.org/10.1016/j.neunet.2023.01.018" target="_blank" rel="noopener">
-            DEFAEK: Domain Effective Fast Adaptive Network for Face Anti-Spoofing (Neural Networks 2023)
+            DEFAEK: Domain Effective Fast Adaptive Network for Face Anti-Spoofing
           </a>
         </div>
-        <div class="authors">J.-D. Lin, Y.-H. Han, P.-H. Huang, J. A. Tan, J.-C. Chen, M. Tanveer, K.-L. Hua</div>
+        <div class="authors">J.-D. Lin, Y.-H. Han, P.-H. Huang, J. A. Tan, J.-C. Chen, M. Tanveer, K.-L. Hua — Neural Networks 2023</div>
       </div>
+
+      <p class="muted" style="margin-top:12px;">
+        Full publication list: <a href="https://scholar.google.com/citations?hl=zh-TW&user=igI019oAAAAJ" target="_blank" rel="noopener" style="color:inherit;">Google Scholar</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Project + Research Artifacts ===== -->
+  <section id="project" class="section" aria-label="Project">
+    <div class="container">
+      <h2>Project</h2>
+
+      <!-- STAS (single, open-source) -->
+      <a class="card-link" href="https://github.com/Mouthhan/TEAM_1114_STAS_II" target="_blank" rel="noopener"
+        aria-label="Open STAS repo in new tab">
+        <img class="card-img" src="imgs/project.jpg" alt="STAS thumbnail" />
+        <div class="card-body">
+          <p class="card-title">STAS (Medical Image Segmentation Challenge)</p>
+          <p class="card-desc">
+            Repository for our award-winning solution in a medical image segmentation competition, including training,
+            inference, and experiment configurations for reproducible results.
+          </p>
+        </div>
+      </a>
+
+      <!-- Research Artifacts: 3 pipeline figures -->
+      <div style="margin-top:18px">
+        <h3 style="margin-bottom:10px">Research Artifacts (Pipelines)</h3>
+        <p class="muted" style="margin-bottom:12px">
+          Below are simplified pipeline overviews for selected papers. Each figure highlights the main idea and the
+          system-level flow.
+        </p>
+
+        <div class="grid">
+          <!-- MM Asia 2023 -->
+          <div class="col-6">
+            <div class="figure-card">
+              <img src="imgs/mmasia2023.png" alt="MM Asia 2023 pipeline" />
+              <div class="body">
+                <div class="kicker">MM Asia 2023 • Deepfake Detection</div>
+                <div class="title">Multi-Task Self-Blended Images for Face Forgery Detection</div>
+                <p class="desc">
+                  A robustness-oriented deepfake detector that learns with <strong>multi-task supervision</strong>.
+                  The pipeline encourages the model to capture <strong>forgery-consistent artifacts</strong> by jointly
+                  optimizing complementary objectives (e.g., forgery cues and auxiliary predictions), improving
+                  generalization across manipulation types and datasets.
+                </p>
+                <div class="actions">
+                  <a class="mini" href="https://dl.acm.org/doi/epdf/10.1145/3595916.3626426" target="_blank" rel="noopener">doi</a>
+                  <a class="mini" href="https://scholar.google.com/citations?hl=zh-TW&user=igI019oAAAAJ" target="_blank" rel="noopener">Scholar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ICASSP 2024 -->
+          <div class="col-6">
+            <div class="figure-card">
+              <img src="imgs/icassp2024.png" alt="ICASSP 2024 pipeline" />
+              <div class="body">
+                <div class="kicker">ICASSP 2024 • Medical Segmentation</div>
+                <div class="title">Limited-Supervised Foot Ulcer Segmentation via Cross-Domain Augmentation</div>
+                <p class="desc">
+                  A practical segmentation framework for limited labels:
+                  <strong>cross-domain augmentation</strong> expands appearance diversity, while
+                  <strong>model ensembling</strong> stabilizes predictions. The pipeline is designed for real-world
+                  clinical variability and improves robustness under limited supervision.
+                </p>
+                <div class="actions">
+                  <a class="mini" href="https://arxiv.org/abs/2401.08422" target="_blank" rel="noopener">arXiv</a>
+                  <a class="mini" href="https://scholar.google.com/citations?hl=zh-TW&user=igI019oAAAAJ" target="_blank" rel="noopener">Scholar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WACV 2026 -->
+          <div class="col-12">
+            <div class="figure-card">
+              <img src="imgs/wacv2026.png" alt="WACV 2026 pipeline" />
+              <div class="body">
+                <div class="kicker">WACV 2026 • Industrial Anomaly Detection</div>
+                <div class="title">PatchEAD: Patch-Exclusive Anomaly Detection with Industrial Visual Prompting</div>
+                <p class="desc">
+                  A training-free / few-shot industrial anomaly detection pipeline that produces
+                  <strong>patch-level anomaly maps</strong> for verification. The core idea is to unify visual prompting
+                  signals and patch-level comparisons to localize anomalies, enabling reliable inspection with minimal
+                  data and strong interpretability.
+                </p>
+                <div class="actions">
+                  <a class="mini" href="https://arxiv.org/abs/2509.25856" target="_blank" rel="noopener">arXiv</a>
+                  <a class="mini" href="https://scholar.google.com/citations?hl=zh-TW&user=igI019oAAAAJ" target="_blank" rel="noopener">Scholar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ===== Contact ===== -->
   <section id="contact" class="section" aria-label="Contact">
     <div class="container">
-      <h2>Contact Me</h2>
-      <p class="muted" style="margin-bottom:10px">This will open your default email client.</p>
+      <h2>Contact</h2>
+      <p class="muted" style="margin-bottom:10px">
+        This will open your default email client.
+      </p>
       <div class="contact-box">
         <textarea id="msg" placeholder="Your message…"></textarea>
-        <button class="btn" id="sendBtn">Send</button>
+        <button class="send" id="sendBtn">Send</button>
       </div>
-
       <p class="muted" style="margin-top:10px">
-        Or email me directly: <strong>alan880603@gmail.com</strong>
+        Direct email: <strong>alan880603@gmail.com</strong>
       </p>
     </div>
   </section>
@@ -508,7 +673,7 @@
     const navLinks = document.getElementById('navLinks');
     menuBtn?.addEventListener('click', () => navLinks.classList.toggle('show'));
 
-    // ===== Scrollspy: highlight current section =====
+    // ===== Scrollspy =====
     const links = [...document.querySelectorAll('.nav a')];
     const targets = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const io = new IntersectionObserver((entries) => {
@@ -521,7 +686,7 @@
     }, { rootMargin: `-40% 0px -55% 0px`, threshold: [0, 1] });
     targets.forEach(t => io.observe(t));
 
-    // ===== Contact: use mailto =====
+    // ===== Contact: mailto =====
     const CONTACT_EMAIL = 'alan880603@gmail.com';
     document.getElementById('sendBtn')?.addEventListener('click', () => {
       const msg = document.getElementById('msg').value.trim();
